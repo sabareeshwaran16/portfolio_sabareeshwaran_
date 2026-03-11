@@ -20,7 +20,7 @@ const Footer = () => {
           {/* Logo */}
           <div>
             <a href="#home" className="font-heading text-2xl font-bold text-primary">
-              Sabareeshwaran<span className="text-foreground">.</span>
+              Sabareeshwaran<span className="text-foreground">.B</span>
             </a>
             <p className="text-xs text-muted-foreground mt-2">Full Stack Developer & AI Enthusiast</p>
           </div>

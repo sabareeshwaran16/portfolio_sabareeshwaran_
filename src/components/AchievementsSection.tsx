@@ -9,10 +9,10 @@ const achievements = [
 ];
 
 const codingProfiles = [
-  { label: "LeetCode", stat: "300+", sub: "Problems Solved", extra: "25+ Contests" },
-  { label: "HackerRank", stat: "3★", sub: "Python & C", extra: "2★ SQL" },
-  { label: "CodeChef", stat: "400+", sub: "Rating", extra: "" },
-  { label: "SkillRack", stat: "1000+", sub: "Problems Solved", extra: "" },
+  { label: "LeetCode", stat: "300+", sub: "Problems Solved", extra: "25+ Contests", link: "https://leetcode.com/u/_Sabareeshwaran_B/" },
+  { label: "HackerRank", stat: "3★", sub: "Python & C", extra: "2★ SQL", link: "https://www.hackerrank.com/profile/sabareeshwaran41" },
+  { label: "CodeChef", stat: "400+", sub: "Rating", extra: "", link: "https://www.codechef.com/users/sabareesh_41" },
+  { label: "SkillRack", stat: "1000+", sub: "Problems Solved", extra: "", link: "https://www.skillrack.com/faces/resume.xhtml?id=515320&key=3dc237a515194b5aa23b2bad9b4e842ee7e7c6f3" },
 ];
 
 const certifications = [
@@ -124,13 +124,16 @@ const AchievementsSection = () => (
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
             {codingProfiles.map((p, i) => (
-              <motion.div
+              <motion.a
                 key={p.label}
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-secondary/50 rounded-2xl p-5 hover:bg-secondary/80 transition-colors group cursor-pointer"
+                className="bg-secondary/50 rounded-2xl p-5 hover:bg-secondary/80 transition-colors group cursor-pointer block"
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">{p.label}</span>
@@ -141,7 +144,7 @@ const AchievementsSection = () => (
                 </p>
                 <p className="text-xs text-muted-foreground">{p.sub}</p>
                 {p.extra && <p className="text-[10px] text-primary/70 mt-1">{p.extra}</p>}
-              </motion.div>
+              </motion.a>
             ))}
           </div>
         </motion.div>
