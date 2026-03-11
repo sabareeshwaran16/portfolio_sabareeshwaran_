@@ -1,23 +1,48 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Github, Linkedin, Send, ArrowUpRight } from "lucide-react";
 import { useState } from "react";
+import emailjs from '@emailjs/browser';
 
 const contactInfo = [
-  { icon: Phone, label: "Phone", text: "+91 XXXXX XXXXX", href: "tel:+91XXXXXXXXXX" },
-  { icon: Mail, label: "Email", text: "sabareeshwaran@email.com", href: "mailto:sabareeshwaran@email.com" },
-  { icon: MapPin, label: "Location", text: "India", href: "#" },
-  { icon: Github, label: "GitHub", text: "github.com/sabareeshwaran", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", text: "linkedin.com/in/sabareeshwaran", href: "#" },
+  { icon: Phone, label: "Phone", text: "+91 78452 24089", href: "tel:+917845224089" },
+  { icon: Mail, label: "Email", text: "sabareeshwaran.b2024ece@sece.ac.in", href: "mailto:sabareeshwaran.b2024ece@sece.ac.in" },
+  { icon: MapPin, label: "Location", text: "Coimbatore", href: "#" },
+  { icon: Github, label: "GitHub", text: "github.com/sabareeshwaran16", href: "https://github.com/sabareeshwaran16" },
+  { icon: Linkedin, label: "LinkedIn", text: "linkedin.com/in/sabareeshwaranb", href: "https://www.linkedin.com/in/sabareeshwaranb" },
 ];
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [focused, setFocused] = useState<string | null>(null);
+  const [sending, setSending] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Message sent! (Demo — no backend connected)");
-    setForm({ name: "", email: "", message: "" });
+    setSending(true);
+
+    emailjs.send(
+      'service_r8iel4h',
+      'template_fae4ugv',
+      {
+        from_name: form.name,
+        from_email: form.email,
+        message: form.message,
+        to_email: 'sabareeshwaran.b2024ece@sece.ac.in'
+      },
+      'EBWDeoJkOqawG8umR'
+    )
+    .then((response) => {
+      console.log('SUCCESS!', response.status, response.text);
+      alert('Message sent successfully!');
+      setForm({ name: "", email: "", message: "" });
+    })
+    .catch((error) => {
+      console.error('FAILED...', error);
+      alert('Failed to send message: ' + error.text);
+    })
+    .finally(() => {
+      setSending(false);
+    });
   };
 
   const inputClasses = (field: string) =>
@@ -55,26 +80,33 @@ const ContactSection = () => {
             <p className="text-muted-foreground mb-6 leading-relaxed">
               Feel free to reach out for collaborations, opportunities, or just a friendly hello! I'm always open to new connections.
             </p>
-            {contactInfo.map((item, i) => (
-              <motion.a
-                key={item.label}
-                href={item.href}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="group flex items-center gap-4 p-3 rounded-2xl bg-card/50 border border-border hover:border-primary/30 transition-all duration-300 hover:-translate-x-1"
-              >
-                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors shrink-0">
-                  <item.icon className="text-primary" size={18} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{item.label}</p>
-                  <p className="text-sm truncate">{item.text}</p>
-                </div>
-                <ArrowUpRight size={14} className="text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
-              </motion.a>
-            ))}
+            {contactInfo.map((item, i) => {
+              const isExternal = item.href.startsWith('http');
+              const isDisabled = item.href === '#';
+              
+              return (
+                <motion.a
+                  key={item.label}
+                  href={isDisabled ? undefined : item.href}
+                  target={isExternal ? '_blank' : undefined}
+                  rel={isExternal ? 'noopener noreferrer' : undefined}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className={`group flex items-center gap-4 p-3 rounded-2xl bg-card/50 border border-border hover:border-primary/30 transition-all duration-300 hover:-translate-x-1 ${isDisabled ? 'cursor-default' : 'cursor-pointer'}`}
+                >
+                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors shrink-0">
+                    <item.icon className="text-primary" size={18} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{item.label}</p>
+                    <p className="text-sm truncate">{item.text}</p>
+                  </div>
+                  <ArrowUpRight size={14} className="text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+                </motion.a>
+              );
+            })}
           </motion.div>
 
           {/* Form */}
@@ -128,9 +160,10 @@ const ContactSection = () => {
             </div>
             <button
               type="submit"
-              className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5"
+              disabled={sending}
+              className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Send Message
+              {sending ? 'Sending...' : 'Send Message'}
               <Send size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </button>
           </motion.form>

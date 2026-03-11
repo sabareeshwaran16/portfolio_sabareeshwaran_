@@ -1,18 +1,18 @@
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion } from "framer-motion";
 import { Trophy, Award, Code2, ShieldCheck, Star, Target, ExternalLink } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const achievements = [
   { icon: Trophy, text: "Winner – Anokha'26 Process Warzone", sub: "₹20,000 prize", highlight: true },
   { icon: Target, text: "HackWithUttarPradesh", sub: "Top 300 Teams – Shortlisted", highlight: false },
-  { icon: Award, text: "PEC Hacks", sub: "Final Round – Shortlisted", highlight: false },
+  { icon: Award, text: "GDG Hacks", sub: "Final Round – Shortlisted", highlight: false },
 ];
 
 const codingProfiles = [
-  { label: "LeetCode", stat: "230+", sub: "Problems Solved", extra: "17+ Contests" },
+  { label: "LeetCode", stat: "300+", sub: "Problems Solved", extra: "25+ Contests" },
   { label: "HackerRank", stat: "3★", sub: "Python & C", extra: "2★ SQL" },
   { label: "CodeChef", stat: "400+", sub: "Rating", extra: "" },
-  { label: "SkillRack", stat: "Active", sub: "Profile", extra: "" },
+  { label: "SkillRack", stat: "1000+", sub: "Problems Solved", extra: "" },
 ];
 
 const certifications = [
@@ -25,18 +25,34 @@ const AnimatedNumber = ({ target }: { target: string }) => {
   const isNum = /^\d+/.test(target);
   const num = parseInt(target);
   const suffix = target.replace(/\d+/, "");
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (v) => Math.floor(v).toString());
-  const [display, setDisplay] = useState("0");
+  const [display, setDisplay] = useState(isNum ? "0" : target);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
-  useEffect(() => {
-    if (!isNum) return;
-    const controls = animate(count, num, { duration: 2, ease: "easeOut" });
-    const unsub = rounded.on("change", (v) => setDisplay(v));
-    return () => { controls.stop(); unsub(); };
-  }, []);
-
-  return <>{isNum ? display : target}{suffix}</>;
+  return (
+    <motion.span
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      onViewportEnter={() => {
+        if (!isNum || hasAnimated) return;
+        setHasAnimated(true);
+        let current = 0;
+        const increment = num / 50;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= num) {
+            setDisplay(num.toString());
+            clearInterval(timer);
+          } else {
+            setDisplay(Math.floor(current).toString());
+          }
+        }, 30);
+        return () => clearInterval(timer);
+      }}
+    >
+      {display}{suffix}
+    </motion.span>
+  );
 };
 
 const AchievementsSection = () => (

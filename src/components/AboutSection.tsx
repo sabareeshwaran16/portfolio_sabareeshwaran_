@@ -51,20 +51,20 @@ const AboutSection = () => (
       </motion.div>
 
       {/* Expertise Cards */}
-      <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-6xl mx-auto">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="bg-card/50 backdrop-blur-sm rounded-2xl p-6 border border-border hover:border-primary/40 hover:shadow-xl transition-all duration-300 hover:scale-105"
+          className="bg-card border border-border rounded-xl p-5 hover:border-primary/40 transition-all duration-300"
         >
-          <div className="w-14 h-14 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4">
-            <Code2 size={28} className="text-cyan-500" />
+          <div className="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-3">
+            <Code2 size={20} className="text-cyan-500" />
           </div>
-          <h3 className="font-heading text-xl font-bold mb-3">MERN Stack</h3>
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            Building full-stack applications with MongoDB, Express, React, and Node.js
+          <h3 className="font-semibold text-base mb-2">MERN Stack</h3>
+          <p className="text-muted-foreground text-xs">
+            MongoDB, Express, React, Node.js
           </p>
         </motion.div>
 
@@ -73,14 +73,14 @@ const AboutSection = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="bg-card/50 backdrop-blur-sm rounded-2xl p-6 border border-border hover:border-primary/40 hover:shadow-xl transition-all duration-300 hover:scale-105"
+          className="bg-card border border-border rounded-xl p-5 hover:border-primary/40 transition-all duration-300"
         >
-          <div className="w-14 h-14 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4">
-            <Server size={28} className="text-cyan-500" />
+          <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center mb-3">
+            <Server size={20} className="text-green-500" />
           </div>
-          <h3 className="font-heading text-xl font-bold mb-3">Backend Systems</h3>
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            Designing robust APIs, database architectures, and scalable server solutions
+          <h3 className="font-semibold text-base mb-2">Spring Boot</h3>
+          <p className="text-muted-foreground text-xs">
+            Java enterprise applications
           </p>
         </motion.div>
 
@@ -89,14 +89,30 @@ const AboutSection = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="bg-card/50 backdrop-blur-sm rounded-2xl p-6 border border-border hover:border-primary/40 hover:shadow-xl transition-all duration-300 hover:scale-105"
+          className="bg-card border border-border rounded-xl p-5 hover:border-primary/40 transition-all duration-300"
         >
-          <div className="w-14 h-14 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4">
-            <Brain size={28} className="text-cyan-500" />
+          <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-3">
+            <Server size={20} className="text-blue-500" />
           </div>
-          <h3 className="font-heading text-xl font-bold mb-3">AI & Data</h3>
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            Exploring machine learning, data analysis, and intelligent system design
+          <h3 className="font-semibold text-base mb-2">Backend APIs</h3>
+          <p className="text-muted-foreground text-xs">
+            REST APIs & databases
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="bg-card border border-border rounded-xl p-5 hover:border-primary/40 transition-all duration-300"
+        >
+          <div className="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center mb-3">
+            <Brain size={20} className="text-purple-500" />
+          </div>
+          <h3 className="font-semibold text-base mb-2">AI & ML</h3>
+          <p className="text-muted-foreground text-xs">
+            Machine learning models
           </p>
         </motion.div>
       </div>

@@ -20,7 +20,7 @@ const Footer = () => {
           {/* Logo */}
           <div>
             <a href="#home" className="font-heading text-2xl font-bold text-primary">
-              SB<span className="text-foreground">.</span>
+              Sabareeshwaran<span className="text-foreground">.</span>
             </a>
             <p className="text-xs text-muted-foreground mt-2">Full Stack Developer & AI Enthusiast</p>
           </div>
@@ -41,13 +41,15 @@ const Footer = () => {
           {/* Social */}
           <div className="flex justify-end gap-3">
             {[
-              { Icon: Github, href: "#" },
-              { Icon: Linkedin, href: "#" },
-              { Icon: Mail, href: "mailto:sabareeshwaran@email.com" },
+              { Icon: Github, href: "https://github.com/sabareeshwaran16" },
+              { Icon: Linkedin, href: "https://www.linkedin.com/in/sabareeshwaranb" },
+              { Icon: Mail, href: "mailto:sabareeshwaran.b2024ece@sece.ac.in" },
             ].map(({ Icon, href }, i) => (
               <a
                 key={i}
                 href={href}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 hover:-translate-y-0.5"
               >
                 <Icon size={16} />
@@ -56,12 +58,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-border mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="border-t border-border mt-8 pt-6 text-center">
           <p className="text-xs text-muted-foreground">
             © 2025 Sabareeshwaran B. All rights reserved.
-          </p>
-          <p className="text-xs text-muted-foreground flex items-center gap-1">
-            Made with <Heart size={10} className="text-primary fill-primary" /> and lots of coffee
           </p>
         </div>
       </div>

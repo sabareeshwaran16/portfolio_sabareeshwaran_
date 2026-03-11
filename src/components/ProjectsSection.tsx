@@ -3,12 +3,14 @@ import { ExternalLink, Github, ArrowUpRight, Cpu, Landmark, Flame } from "lucide
 
 const projects = [
   {
-    title: "Railway Track Damage Detection",
-    year: "2024",
+    title: "Parking Slot Manager",
+    year: "2025",
     icon: Cpu,
-    desc: "Used ultrasonic guided wave technology for crack detection. Non-destructive long-range monitoring system.",
-    tech: ["HTML", "CSS", "JavaScript", "Arduino UNO", "Ultrasonic Sensors"],
+    desc: "Spring Boot application for managing parking slots, vehicle logs, and user roles. Features smart slot allocation and complete parking history tracking.",
+    tech: ["Java 17", "Spring Boot", "TiDB Cloud", "Thymeleaf", "Docker"],
     color: "from-blue-500/20 to-blue-600/5",
+    github: "https://github.com/sabareeshwaran16/parkingslotmanager.git",
+    demo: "https://parkingslotmanager.onrender.com"
   },
   {
     title: "Online Banking Management System",
@@ -17,6 +19,8 @@ const projects = [
     desc: "Implemented authentication, deposits, withdrawals, fund transfer. REST API architecture with structured service layers.",
     tech: ["Java", "Spring Boot", "MySQL", "Gradle", "Postman", "Git/GitHub"],
     color: "from-green-500/20 to-green-600/5",
+    github: "https://github.com/sabareeshwaran16/onlinebanking.git",
+    demo: "https://onlinebanking-t58j.onrender.com"
   },
   {
     title: "Fire & Smoke Detection System",
@@ -25,6 +29,38 @@ const projects = [
     desc: "Live camera stream inference. Integrated deep learning model with REST APIs for real-time detection.",
     tech: ["Python", "YOLOv8", "OpenCV", "Django", "HTML/CSS/JS"],
     color: "from-primary/20 to-primary/5",
+    github: "https://github.com/sabareeshwaran16/firedetection_final.git",
+    demo: "https://aifiredetection-1.onrender.com/logs/"
+  },
+  {
+    title: "Digital Exam Hall Allocation System",
+    year: "2025",
+    icon: Cpu,
+    desc: "MERN stack application for automating exam hall allocation and seating arrangements. Features intelligent seat allocation, department mixing, and PDF generation.",
+    tech: ["React", "Node.js", "Express", "MongoDB", "JWT", "PDFKit"],
+    color: "from-orange-500/20 to-orange-600/5",
+    github: "https://github.com/sabareeshwaran16/Hall-management.git",
+    demo: "https://hall-management-ten.vercel.app"
+  },
+  {
+    title: "Project 5",
+    year: "2025",
+    icon: Cpu,
+    desc: "Project description here",
+    tech: ["Tech1", "Tech2", "Tech3"],
+    color: "from-purple-500/20 to-purple-600/5",
+    github: "",
+    demo: ""
+  },
+  {
+    title: "Project 6",
+    year: "2025",
+    icon: Cpu,
+    desc: "Project description here",
+    tech: ["Tech1", "Tech2", "Tech3"],
+    color: "from-pink-500/20 to-pink-600/5",
+    github: "",
+    demo: ""
   },
 ];
 
@@ -85,12 +121,16 @@ const ProjectsSection = () => (
               </div>
 
               <div className="flex items-center gap-3 pt-4 border-t border-border">
-                <button className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline transition">
-                  <Github size={14} /> View Code
-                </button>
-                <button className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-primary transition ml-auto">
-                  Live Demo <ArrowUpRight size={14} />
-                </button>
+                {p.github && (
+                  <a href={p.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline transition">
+                    <Github size={14} /> View Code
+                  </a>
+                )}
+                {p.demo && (
+                  <a href={p.demo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-primary transition ml-auto">
+                    Live Demo <ArrowUpRight size={14} />
+                  </a>
+                )}
               </div>
             </div>
           </motion.div>

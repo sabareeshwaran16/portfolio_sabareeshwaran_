@@ -38,7 +38,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
         <a href="#home" className="font-heading text-xl font-bold text-primary">
-          SABAREESHWARAN B<span className="text-foreground">.</span>
+          SABAREESHWARAN<span className="text-foreground">.B</span>
         </a>
 
         {/* Desktop */}
@@ -67,7 +67,7 @@ const Navbar = () => {
             href="#contact"
             className="inline-flex px-5 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition"
           >
-            Hire Me
+            Contact
           </a>
         </div>
 
